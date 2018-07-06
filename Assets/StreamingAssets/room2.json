@@ -1,0 +1,3 @@
+{
+    "minSize": {"x": 1,"y": 1}, "maxSize": {"x": 10,"y": 10}, "name": "room2", "background": {"r": 34, "g": 123, "b": 223, "a": 50}    
+}

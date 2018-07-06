@@ -1,0 +1,10 @@
+{
+    "dimensions": {
+        "x": 2,
+        "y": 2
+    },
+    "name": "object2",
+    "price": 10000,
+    "walkable": true,
+    "movementModifier": 50
+}
