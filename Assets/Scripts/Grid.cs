@@ -65,11 +65,31 @@ public class Grid : MonoBehaviour
                 if (Input.GetButtonDown("Fire1") && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
                 {
 
-                    placeTileMap.SetTile(currentCell, setTile);
+                    if (setTile == null)
+                    {
+                        if (placeTileMap.GetTile(currentCell) != null)
+                        {
+                            gameObject.GetComponent<SceneManager>().removeWall();
+                            gameObject.GetComponent<SceneManager>().removeTurret(currentCell);
+                            placeTileMap.SetTile(currentCell, setTile);
+                        }
+                    }
+                    else if (placeTileMap.GetTile(currentCell) == null)
+                    {
+                        placeTileMap.SetTile(currentCell, setTile);
+
+
+                        if (!gameObject.GetComponent<SceneManager>().canPlaceWall())
+                        {
+                            placeTileMap.SetTile(currentCell, null);
+                            
+                        }
+                    }
 
                 }
 
                 hoverTileMap.SetTile(currentCell, hoverTile);
+               
                 if (currentCell != previous)
                 {
                     previous = currentCell;
@@ -78,9 +98,12 @@ public class Grid : MonoBehaviour
 
             else if (drawType == 1)
             {
+
                 if (Input.GetButton("Fire1") && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
                 {
-                    placeTileMap.SetTile(currentCell, setTile);
+                   
+                    
+                    
 
                 }
                 hoverTileMap.SetTile(currentCell, hoverTile);
@@ -212,7 +235,28 @@ public class Grid : MonoBehaviour
             {
                 if (Input.GetButton("Fire1") && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
                 {
-                    GetComponent<SceneManager>().createTurret(currentCell);
+                    if(placeTileMap.GetTile(currentCell)!= null)
+                    {
+                        GetComponent<SceneManager>().createTurret(currentCell);
+                    }
+                    
+
+                }
+                hoverTileMap.SetTile(currentCell, hoverTile);
+                if (currentCell != previous)
+                {
+                    previous = currentCell;
+                }
+            }
+            else if(drawType == 5)
+            {
+                if (Input.GetButton("Fire1") && !UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+                {
+                    if (placeTileMap.GetTile(currentCell) != null)
+                    {
+                        GetComponent<SceneManager>().removeTurret(currentCell);
+                    }
+
 
                 }
                 hoverTileMap.SetTile(currentCell, hoverTile);
@@ -230,6 +274,7 @@ public class Grid : MonoBehaviour
                 hoverTileMap.ClearAllTiles();
             }
         }
+
 
 
 
@@ -255,7 +300,14 @@ public class Grid : MonoBehaviour
 
     public void eraseTile()
     {
+        
         setTile = null;
+    }
+
+    public void deleteTurret()
+    {
+        
+        drawType = 5;
     }
 
 

@@ -105,6 +105,7 @@ MonoBehaviour:
   reloadTime: 0.5
   bulletSpeed: 10
   dammage: 0
+  price: 30
   enemys: []
 --- !u!114 &114353465256874018
 MonoBehaviour:

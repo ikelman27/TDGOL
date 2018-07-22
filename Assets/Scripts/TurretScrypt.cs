@@ -10,6 +10,7 @@ public class TurretScrypt : MonoBehaviour {
     public float reloadTime;
     public float bulletSpeed;
     public float dammage;
+    public float price;
     float startReload;
     public List<GameObject> enemys;
 
